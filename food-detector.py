@@ -39,7 +39,7 @@ app = Starlette()
 
 path = Path("/tmp")
 classes = ['healthy', 'junk']
-data = ImageDataBunch.single_from_classes(path, classes, tfms=get_transforms(), size=224).normalize(imagenet_stats)
+data = ImageDataBunch.single_from_classes(path, classes, ds_tfms=get_transforms(), size=224).normalize(imagenet_stats)
 learner = create_cnn(data, models.resnet50)
 learner.model.load_state_dict(
     torch.load("model-weights.pth", map_location="cpu")
